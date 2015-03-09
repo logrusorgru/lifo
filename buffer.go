@@ -18,7 +18,7 @@ import (
 // LIFO bytes buffer
 type Buffer []byte
 
-// ErrTooLarge is return if memory cannot be allocated to store data in a buffer.
+// ErrTooLarge is returned if memory cannot be allocated to store data in a buffer.
 var ErrTooLarge = errors.New("lifo.Buffer: to large")
 
 // ErrInvalidWriteCount is returned when WriteTo's writer returns wrong count
