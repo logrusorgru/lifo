@@ -65,7 +65,8 @@ func (b *Buffer) Write(p []byte) (n int, err error) {
 // WriteTo writes data to w until the buffer is drained or an error occurs.
 // The return value n is the number of bytes written; it always fits into an
 // int, but it is int64 to match the io.WriterTo interface. Any error
-// encountered during the write is also returned.
+// encountered during the write is also returned. If w returns invalid count
+// err will be ErrInvalidWriteCount
 func (b *Buffer) WriteTo(w io.Writer) (n int64, err error) {
 	if lenb := len(*b); lenb > 0 {
 		m, e := w.Write(*b)
