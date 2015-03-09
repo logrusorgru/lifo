@@ -21,16 +21,17 @@ type Buffer []byte
 // ErrTooLarge is passed to panic if memory cannot be allocated to store data in a buffer.
 var ErrTooLarge = errors.New("lifo.Buffer: to large")
 
-// ErrInvalidWriteCount is
+// ErrInvalidWriteCount is returned when WriteTo's writer returns wrong count
 var ErrInvalidWriteCount = errors.New("lifo.Buffer.WriteTo: invalid Write count")
 
+// NewBuffer returns new buffer with pre-defined buffer or nil
 func NewBuffer(p []byte) *Buffer {
 	b := new(Buffer)
 	*b = p
 	return b
 }
 
-//Read reads the next len(p) bytes from the buffer or until the buffer is drained.
+// Read reads the next len(p) bytes from the buffer or until the buffer is drained.
 // The return value n is the number of bytes read. If the buffer has no data to
 // return, err is io.EOF (unless len(p) is zero); otherwise it is nil.
 func (b *Buffer) Read(p []byte) (n int, err error) {
