@@ -18,16 +18,10 @@ import (
 // Buffer is LIFO bytes buffer type
 type Buffer []byte
 
-var (
-	// ErrTooLarge is returned if memory cannot be allocated to store data in
-	// a buffer.
-	ErrTooLarge = errors.New("lifo.Buffer: to large")
-
-	// ErrInvalidWriteCount is returned when WriteTo's writer returns wrong
-	// count
-	ErrInvalidWriteCount = errors.New("lifo.Buffer.WriteTo:" +
-		" invalid Write count")
-)
+// ErrInvalidWriteCount is returned when WriteTo's writer returns wrong
+// count
+var ErrInvalidWriteCount = errors.New("lifo.Buffer.WriteTo:" +
+	" invalid Write count")
 
 // NewBuffer returns new buffer with pre-defined buffer or nil
 func NewBuffer(p []byte) *Buffer {
@@ -52,20 +46,11 @@ func (b *Buffer) Read(p []byte) (n int, err error) {
 }
 
 // Write appends the contents of p to the buffer, growing the buffer as
-// needed. The return value n is the length of p. If the
-// buffer becomes too large, err will be ErrTooLarge.
+// needed. The return value n is the length of p.
+// The err will be always nil
 func (b *Buffer) Write(p []byte) (n int, err error) {
 	(*b) = append(*b, p...)
 	n = len(p)
-	defer func() {
-		if x := recover(); x != nil {
-			if x == ErrTooLarge {
-				err = x.(error)
-			} else {
-				panic(x)
-			}
-		}
-	}()
 	return
 }
 
@@ -103,18 +88,9 @@ func (b *Buffer) ReadByte() (c byte, err error) {
 }
 
 // WriteByte appends the byte c to the buffer, growing the buffer as needed.
-// If the buffer becomes too large, err will be ErrTooLarge.
+// It always returns nil
 func (b *Buffer) WriteByte(c byte) (err error) {
 	*b = append(*b, c)
-	defer func() {
-		if x := recover(); x != nil {
-			if x == ErrTooLarge {
-				err = x.(error)
-			} else {
-				panic(x)
-			}
-		}
-	}()
 	return
 }
 
