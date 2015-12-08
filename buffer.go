@@ -1,4 +1,4 @@
-// lifo bytes buffer
+// Package lifo implements bytes buffer with LIFO order (last-in-first-out)
 //
 //     /*   For exapmle:   */
 //     b := NewBuffer(nil)
@@ -15,14 +15,19 @@ import (
 	"io"
 )
 
-// LIFO bytes buffer
+// Buffer is LIFO bytes buffer type
 type Buffer []byte
 
-// ErrTooLarge is returned if memory cannot be allocated to store data in a buffer.
-var ErrTooLarge = errors.New("lifo.Buffer: to large")
+var (
+	// ErrTooLarge is returned if memory cannot be allocated to store data in
+	// a buffer.
+	ErrTooLarge = errors.New("lifo.Buffer: to large")
 
-// ErrInvalidWriteCount is returned when WriteTo's writer returns wrong count
-var ErrInvalidWriteCount = errors.New("lifo.Buffer.WriteTo: invalid Write count")
+	// ErrInvalidWriteCount is returned when WriteTo's writer returns wrong
+	// count
+	ErrInvalidWriteCount = errors.New("lifo.Buffer.WriteTo:" +
+		" invalid Write count")
+)
 
 // NewBuffer returns new buffer with pre-defined buffer or nil
 func NewBuffer(p []byte) *Buffer {
@@ -31,9 +36,10 @@ func NewBuffer(p []byte) *Buffer {
 	return b
 }
 
-// Read reads the next len(p) bytes from the buffer or until the buffer is drained.
-// The return value n is the number of bytes read. If the buffer has no data to
-// return, err is io.EOF (unless len(p) is zero); otherwise it is nil.
+// Read reads the next len(p) bytes from the buffer or until the buffer
+// is drained. The return value n is the number of bytes read. If the buffer
+// has no data to return, err is io.EOF (unless len(p) is zero);
+// otherwise it is nil.
 func (b *Buffer) Read(p []byte) (n int, err error) {
 	if x := len(*b) - len(p); x >= 0 {
 		n = copy(p, (*b)[x:])
@@ -119,16 +125,16 @@ func (b *Buffer) Len() int {
 
 // Next returns a slice containing the next n bytes from the buffer,
 // advancing the buffer as if the bytes had been returned by Read.
-// If there are fewer than n bytes in the buffer, Next returns the entire buffer.
+// If there are fewer than n bytes in the buffer, Next
+// returns the entire buffer.
 func (b *Buffer) Next(n int) (p []byte) {
 	if x := len(*b) - n; x >= 0 {
 		p = make([]byte, n)
 		n = copy(p, (*b)[x:])
 		*b = (*b)[:x]
 		return p
-	} else {
-		p = *b
-		*b = nil
-		return p
 	}
+	p = *b
+	*b = nil
+	return p
 }

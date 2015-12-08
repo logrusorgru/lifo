@@ -5,6 +5,7 @@ lifo
 [![WTFPL License](https://img.shields.io/badge/license-wtfpl-blue.svg)](http://www.wtfpl.net/about/)
 [![Build Status](https://travis-ci.org/logrusorgru/lifo.svg)](https://travis-ci.org/logrusorgru/lifo)
 [![Coverage Status](https://coveralls.io/repos/logrusorgru/lifo/badge.svg?branch=master)](https://coveralls.io/r/logrusorgru/lifo?branch=master)
+[![GoReportCard](http://goreportcard.com/badge/logrusorgru/lifo)](http://goreportcard.com/report/logrusorgru/lifo)
 
 golang lifo reader/writer buffer like truncated bytes.Buffer but lifo
 
