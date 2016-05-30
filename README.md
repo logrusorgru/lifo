@@ -6,6 +6,7 @@ lifo
 [![Build Status](https://travis-ci.org/logrusorgru/lifo.svg)](https://travis-ci.org/logrusorgru/lifo)
 [![Coverage Status](https://coveralls.io/repos/logrusorgru/lifo/badge.svg?branch=master)](https://coveralls.io/r/logrusorgru/lifo?branch=master)
 [![GoReportCard](http://goreportcard.com/badge/logrusorgru/lifo)](http://goreportcard.com/report/logrusorgru/lifo)
+[![paypal donate](https://img.shields.io/badge/paypal%20%24-donate-orange.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QN87HECD52E4Q)
 
 golang lifo reader/writer buffer like truncated bytes.Buffer but lifo
 
