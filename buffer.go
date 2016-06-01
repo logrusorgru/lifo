@@ -1,13 +1,32 @@
-// Package lifo implements bytes buffer with LIFO order (last-in-first-out)
 //
-//     /*   For exapmle:   */
-//     b := NewBuffer(nil)
-//     b.WriteByte(byte(1))
-//     b.WriteByte(byte(2))
-//     b.WriteByte(byte(3))
-//     b.ReadByte // => 3
-//     b.ReadByte // => 2
-//     b.ReadByte // => 1
+// Copyright (c) 2016 Konstanin Ivanov <kostyarin.ivanov@gmail.com>.
+// All rights reserved. This program is free software. It comes without
+// any warranty, to the extent permitted by applicable law. You can
+// redistribute it and/or modify it under the terms of the Do What
+// The Fuck You Want To Public License, Version 2, as published by
+// Sam Hocevar. See LICENSE.md file for more details or see below.
+//
+
+//
+//        DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
+//                    Version 2, December 2004
+//
+// Copyright (C) 2004 Sam Hocevar <sam@hocevar.net>
+//
+// Everyone is permitted to copy and distribute verbatim or modified
+// copies of this license document, and changing it is allowed as long
+// as the name is changed.
+//
+//            DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
+//   TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION
+//
+//  0. You just DO WHAT THE FUCK YOU WANT TO.
+//
+
+// Package lifo implements bytes buffer with LIFO order (last-in-first-out)
+// part-by-part. So, if you write `[]byte("Hello")` and then
+// `[]byte("World")`. After that you can read it back: `"World"`
+// then `"Hello"`.
 package lifo
 
 import (

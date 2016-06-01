@@ -8,7 +8,9 @@ lifo
 [![GoReportCard](http://goreportcard.com/badge/logrusorgru/lifo)](http://goreportcard.com/report/logrusorgru/lifo)
 [![paypal donate](https://img.shields.io/badge/paypal%20%24-donate-orange.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QN87HECD52E4Q)
 
-golang lifo reader/writer buffer like truncated bytes.Buffer but lifo
+Golang lifo reader/writer buffer like truncated bytes.Buffer. The LIFO
+means part-by-part. If you write `[]byte("Hello")` and then `[]byte("World")`.
+After that you can read it back: `"World"` then `"Hello"`.
 
 ### Install
 
