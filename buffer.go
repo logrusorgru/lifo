@@ -125,7 +125,7 @@ func (b *Buffer) Len() int {
 func (b *Buffer) Next(n int) (p []byte) {
 	if x := len(*b) - n; x >= 0 {
 		p = make([]byte, n)
-		n = copy(p, (*b)[x:])
+		copy(p, (*b)[x:])
 		*b = (*b)[:x]
 		return p
 	}
